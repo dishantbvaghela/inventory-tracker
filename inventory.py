@@ -45,10 +45,19 @@ def show_items(items):
         print(f"{name}: {qty}{alert}")
 
 
+def delete_item(items):
+    name = input("Item name to delete: ").strip()
+    if name in items:
+        del items[name]
+        save_items(items)
+        print("Deleted.")
+    else:
+        print("Item not found.")
+
 def main():
     items = load_items()
     while True:
-        print("\n1. Add stock\n2. Remove stock\n3. View all\n4. Exit")
+        print("\n1. Add stock\n2. Remove stock\n3. View all\n4. Delete item\n5. Exit")
         choice = input("Choose: ")
         if choice == "1":
             add_stock(items)
@@ -57,9 +66,10 @@ def main():
         elif choice == "3":
             show_items(items)
         elif choice == "4":
+            delete_item(items)
+        elif choice == "5":
             break
         else:
-            print("Invalid choice.")
-
+            print("Invalid choice.")        
 
 main()
