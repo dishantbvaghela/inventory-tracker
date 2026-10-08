@@ -12,6 +12,7 @@ python inventory.py
 
 - Add and remove stock
 - View all items
+- Delete items
 - Low-stock warning (below 10 units)
 
 Part of my bigger idea: Smart Factory Manager.
