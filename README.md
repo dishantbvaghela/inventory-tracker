@@ -1,4 +1,6 @@
-# Inventory Tracker
+```
+python inventory.py
+```
 
 A simple Python program to track stock levels with low-stock alerts.
 Data is saved in a JSON file.
