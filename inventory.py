@@ -2,7 +2,7 @@ import json
 import os
 
 FILE = "inventory.json"
-LOW_STOCK_LIMIT = 10
+LOW_STOCK_LIMIT = 50
 
 
 def load_items():
@@ -54,10 +54,20 @@ def delete_item(items):
     else:
         print("Item not found.")
 
+def reorder_list(items):
+    low = {name: qty for name, qty in items.items() if qty < LOW_STOCK_LIMIT}
+    if not low:
+        print("All items are well stocked.")
+        return
+    print("Items to reorder:")
+    for name, qty in low.items():
+        needed = LOW_STOCK_LIMIT - qty
+        print(f"{name}: {qty} left (order at least {needed} more)")        
+
 def main():
     items = load_items()
     while True:
-        print("\n1. Add stock\n2. Remove stock\n3. View all\n4. Delete item\n5. Exit")
+        print("\n1. Add stock\n2. Remove stock\n3. View all\n4. Delete item\n5. Reorder list\n6. Exit")
         choice = input("Choose: ")
         if choice == "1":
             add_stock(items)
@@ -68,8 +78,11 @@ def main():
         elif choice == "4":
             delete_item(items)
         elif choice == "5":
+            reorder_list(items)
+        elif choice == "6":
             break
         else:
-            print("Invalid choice.")        
+            print("Invalid choice.")
 
-main()
+
+main()      
